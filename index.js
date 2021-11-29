@@ -29,7 +29,8 @@ exports.handler = (event, context, callback) => {
                 let params = {
                     Item: {
                         id:message.email,
-                        token: context.awsRequestId,
+                        // token: context.awsRequestId,
+                        token: message.token,
                         ttl: expiry,
                         from: "noreply@prod.ashwinkumarrk.me",
                     },
@@ -44,8 +45,8 @@ exports.handler = (event, context, callback) => {
                         },
                         Message: {
                             Body: {
-                                Text: { Data: "Click the link to verify email for account creaation\n\n" + 
-                                "http://prod.ashwinkumarrk.me/v1/app/verifyUserEmail?email="+ message.email +"&token=" + context.awsRequestId},
+                                Text: { Data: "Click the link to verify email for account creation\n\n" + 
+                                "http://prod.ashwinkumarrk.me/v1/app/verifyUserEmail?email="+ message.email +"&token=" + message.token},
                             },
                             Subject: { Data: "Verify Email for Account Creation" },
                         },
