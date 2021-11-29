@@ -38,7 +38,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload artifact to s3
-        run: aws s3 sync ./serverless_artifact s3://${{secrets.S3_BUCKET_NAME}}
+        run: aws s3 sync ./codedeploy_artifact s3://${{secrets.S3_BUCKET_NAME}}
 
       - name: Update Lambda Function
         run: aws lambda update-function-code --function-name lambda_function_name --s3-bucket ${{ secrets.S3_BUCKET_NAME }} --s3-key serverless_artifact.zip --region us-east-1 > lambdaFile.txt
