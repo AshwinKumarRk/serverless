@@ -26,9 +26,9 @@ jobs:
       - name: Archive Releases
         run: |
           npm install
-          mkdir serverless_artifact
-          zip -r serverless .
-          mv serverless_artifact codedeploy_artifact
+          mkdir codedeploy_artifact
+          zip -r serverless_artifact .
+          mv serverless_artifact.zip codedeploy_artifact
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
