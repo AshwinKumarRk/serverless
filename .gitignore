@@ -1,0 +1,7 @@
+deploy.env
+.lambda
+build
+node_modules
+*.tgz
+.idea
+/dist/
