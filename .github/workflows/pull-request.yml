@@ -1,10 +1,9 @@
 name: Serverless Configuration
 
 on:
-
   pull_request:
-    branches: 
-      -main
+    branches:
+      - main
 
   workflow_dispatch:
 
