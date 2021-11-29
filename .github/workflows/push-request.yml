@@ -25,7 +25,6 @@ jobs:
       
       - name: Archive Releases
         run: |
-          npm install
           mkdir codedeploy_artifact
           zip -r serverless_artifact .
           mv serverless_artifact.zip codedeploy_artifact
