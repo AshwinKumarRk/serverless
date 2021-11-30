@@ -4,7 +4,7 @@ const dynamodb = new aws.DynamoDB.DocumentClient();
 aws.config.update({ region: "us-east-1" });
 
 exports.handler = (event, context, callback) => {
-    let message = JSON.parse(event.Records[0].Sns.Message)
+    let message = event.Records[0].Sns.Message
     console.log(message.email);
     let searchParams = {
         TableName: "csye6225",
