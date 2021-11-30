@@ -6,6 +6,7 @@ aws.config.update({ region: "us-east-1" });
 exports.handler = (event, context, callback) => {
     let message = event.Records[0].Sns.Message
     message = JSON.parse(message)
+    console.log(message.email);
     let searchParams = {
         TableName: "csye6225",
         Key: {
