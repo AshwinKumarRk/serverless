@@ -12,7 +12,7 @@ exports.handler = (event, context, callback) => {
         id:message.email,
         }
     };
-    
+
     dynamodb.get(searchParams, (err, resp) => {
         if(!err){
             let alive = false;
@@ -47,7 +47,7 @@ exports.handler = (event, context, callback) => {
                         Message: {
                             Body: {
                                 Text: { Data: "Click the link to verify email for account creation\n\n" + 
-                                "http://prod.ashwinkumarrk.me/v1/app/verifyUserEmail?email="+ message.email +"&token=" + message.token},
+                                "http://prod.ashwinkumarrk.me/v1/users/verifyUserEmail?email="+ message.email +"&token=" + message.token},
                             },
                             Subject: { Data: "Verify Email for Account Creation" },
                         },
