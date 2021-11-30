@@ -13,6 +13,7 @@ exports.handler = (event, context, callback) => {
         id:message.email,
         }
     };
+    console.log(searchParams);
     dynamodb.get(searchParams, (err, resp) => {
         if(!err){
             let alive = false;
