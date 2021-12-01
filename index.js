@@ -19,20 +19,17 @@ exports.handler = (event, context, callback) => {
             if (resp.Item == null || resp.Item == undefined) {
                 alive = false;
             } else {
-                if (resp.Item.ttl > new Date().getTime()) {
+                if (resp.Item.ttl > parseInt(new Date().now()/1000)) {
                     alive = true;
                 }
             }
             if(!alive){
-                let currentTime = new Date().getTime();
-                let ttl = process.env.timeToLive * 60 * 1000;
-                let expiry = currentTime + ttl;
+                let ttl = (process.env.timeToLive * 60) + parseInt(new Date().now()/1000);
                 let params = {
                     Item: {
                         id:message.email,
-                        // token: context.awsRequestId,
                         token: message.token,
-                        ttl: expiry,
+                        ttl: ttl,
                         from: "noreply@prod.ashwinkumarrk.me",
                     },
                     TableName: "csye6225"
