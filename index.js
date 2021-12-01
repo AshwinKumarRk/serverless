@@ -24,7 +24,7 @@ exports.handler = (event, context, callback) => {
                 }
             }
             if(!alive){
-                let ttl = (1 * 60) + parseInt(Date.now()/1000);
+                let ttl = (5 * 60) + parseInt(Date.now()/1000);
                 let params = {
                     Item: {
                         id:message.email,
