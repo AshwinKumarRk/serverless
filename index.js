@@ -19,12 +19,12 @@ exports.handler = (event, context, callback) => {
             if (resp.Item == null || resp.Item == undefined) {
                 alive = false;
             } else {
-                if (resp.Item.ttl > parseInt(new Date().now()/1000)) {
+                if (resp.Item.ttl > parseInt(new Date.now()/1000)) {
                     alive = true;
                 }
             }
             if(!alive){
-                let ttl = (process.env.timeToLive * 60) + parseInt(new Date().now()/1000);
+                let ttl = (process.env.timeToLive * 60) + parseInt(new Date.now()/1000);
                 let params = {
                     Item: {
                         id:message.email,
