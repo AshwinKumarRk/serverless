@@ -9,8 +9,7 @@ exports.handler = (event, context, callback) => {
     let searchParams = {
         TableName: "csye6225",
         Key: {
-        id:message.email,
-        messageType: "verification"
+        id:message.email
         }
     };
 
