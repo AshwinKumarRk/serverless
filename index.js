@@ -10,10 +10,12 @@ exports.handler = (event, context, callback) => {
         TableName: "csye6225",
         Key: {
         id:message.email,
+        messageType: "verification"
         }
     };
 
     dynamodb.get(searchParams, (err, resp) => {
+        console.log("Entered GET DynamoDB")
         if(!err){
             let alive = false;
             if (resp.Item == null || resp.Item == undefined) {
@@ -36,6 +38,7 @@ exports.handler = (event, context, callback) => {
                 };
 
             dynamodb.put(params, (err, data) => {
+                console.log("Entered PUT DynamoDB")
                 if(!err){
                     let params = {
                         Destination: {
@@ -44,7 +47,8 @@ exports.handler = (event, context, callback) => {
                         Message: {
                             Body: {
                                 Text: { Data: "Click the link to verify email for account creation\n\n" + 
-                                "http://prod.ashwinkumarrk.me/v1/users/verifyUserEmail?email="+ message.email +"&token=" + message.token},
+                                "https://prod.ashwinkumarrk.me/v1/users/verifyUserEmail?email="+ message.email +"&token=" + message.token + "\n\n" +
+                                "You will not be able to access anything unless you verify. Thank you."},
                             },
                             Subject: { Data: "Verify Email for Account Creation" },
                         },
@@ -52,12 +56,12 @@ exports.handler = (event, context, callback) => {
                     };
                     return ses.sendEmail(params).promise()
                 } else {
-                    console.log("Error");
+                    console.log(err);
                 }
             })
             }
         } else {
-            console.log("GET Request Failed");
+            console.log("GET Request Failed / Data not Found", err);
         }
     })
 }
